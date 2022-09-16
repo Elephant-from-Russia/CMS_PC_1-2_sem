@@ -1,0 +1,74 @@
+include console.inc
+;схема программы
+
+INCLUDE settings.inc
+INCLUDE io2020.inc
+ 
+.STACK 4096
+
+.DATA
+
+ n dd ?
+ a dd ?; 123
+ b dd ?
+ V1 DB 'CDE'
+ V2 DW 'CD'
+ V3 DD 'CDE'
+    
+wp equ word ptr
+
+.CODE
+start: 
+;    mov ax, wp n
+;    mov bl, 10
+;    div bl
+;    mov cl, ah
+;    mov ah, 0
+;    div bl
+;    mov dl, ah
+;    xchg cl, al
+;    mov ah, 0
+;    mul bl
+;    add al, dl
+;    mul bl
+;    mov al, cl
+;    adc ah, 0
+;    mov a, 0
+;    mov wp a, ax
+;    outu a
+;    newline
+;    mov a, 5002 
+;    mov eax, a
+;    mov ecx, 1000
+;    cdq
+;    idiv ecx
+;    imul edx
+;    mov b, eax
+;    outi b
+;    newline
+;    
+    
+    ;mov eax, 0
+    ;mov al, BYTE PTR x + 2
+    ;outu eax
+    ;newline
+    ;outi eax
+    ;outu y
+    ;outi y0
+    
+    ININT n
+    mov eax, n
+    
+    
+    mov ebx, 10
+    mov esi, 0 
+    L:
+    mov edx, 0
+    div ebx
+    add esi, edx
+    cmp eax, 0
+    jbe L
+    jnz L
+    outu esi
+    EXIT
+   end Start

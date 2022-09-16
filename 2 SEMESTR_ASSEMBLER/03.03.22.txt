@@ -1,0 +1,32 @@
+include console.inc
+
+COMMENT *
+
+   Заготовка программы
+
+*
+
+.data
+	N DD 321
+	A DD ?;123
+
+.code
+Start:
+	MOV AX, WP, B
+	MOV BL 10 
+	DIV BL
+	MOV ZX A , AH
+	MOV AH,0
+	DIV BL
+	MOV BL, AH
+	XCHG CL, AL
+	MOV AH,0
+	MUL BL 
+	ADD AL, D1
+	MUL AL, C1
+	ADC AH, 0
+	MOV A, 0
+	MOV WP A,AX
+	OUTU A
+	EXIT
+   end Start

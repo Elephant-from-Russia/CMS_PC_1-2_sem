@@ -1,0 +1,35 @@
+include console.inc
+
+COMMENT *
+
+   Заготовка программы
+
+*
+
+.data
+
+.code
+Start:
+   ClrScr
+   ConsoleTitle "  аготовка программы"
+   MOV AX,X
+   MOV BS, X+1
+   MOV D1, BYTE PTR X+3
+   BYTE PTR Y+1
+   MOV ESI, OFFSET, X
+   MOV ESI, Z
+   MOV ESI, 0
+   MOV AL, BYTE PTR X+2
+    
+   OUTU EAX
+   NEWLINE
+   OUTI EAX
+   
+   OUTY Y
+   OUTI Y
+
+   MsgBox "Конец задачи","Повторить программу ?",MB_YESNO+MB_ICONQUESTION
+   cmp  eax,IDYES
+   je   Start
+   exit
+   end Start

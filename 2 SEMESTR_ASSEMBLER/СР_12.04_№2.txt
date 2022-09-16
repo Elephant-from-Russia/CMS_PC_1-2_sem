@@ -1,0 +1,46 @@
+ASWP PROC 
+ ;push eax 
+ push ebp 
+ mov ebp,esp 
+ push ecx 
+ push ebx 
+ push esi 
+ push edi 
+ 
+ mov eax, [ebp+16] 
+ mov edi, [ebp+12] 
+ mov ecx, [ebp+8] 
+ ;DEC ecx 
+ASWP_loop: 
+ ;OUTI ecx 
+ mov eax, [ebp+16] 
+ASWP_cycle: 
+ mov ebx,[eax] 
+ mov esi,[eax+4] 
+ mov [eax+4],ebx 
+ mov [eax], esi 
+ 
+ add eax, 4 
+ ;OUTI ecx 
+ cmp [eax+4],edi 
+ jbe ASWP_cycle 
+ 
+ loop ASWP_loop 
+;ASWP_loop1: 
+; mov ebx,[eax] 
+; mov esi,[eax+4] 
+; mov [eax+4],ebx 
+; mov [eax], esi 
+; add eax, 4 
+; ;OUTI ecx 
+; loop ASWP_loop1 
+; ;OUTI eax 
+ 
+ pop edi 
+ pop esi 
+ pop ebx 
+ pop ecx 
+ ;pop eax 
+ pop ebp 
+ ret 12 
+ASWP ENDP

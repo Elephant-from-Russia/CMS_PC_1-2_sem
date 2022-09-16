@@ -1,0 +1,62 @@
+include console.inc
+
+.data
+
+.code
+Plus PROC
+	CALL Mult
+	CMP BL, '+'
+	JNE FinP
+	INCHAR BL
+	PUSH ECX
+	MOV ECX, EAX
+	CALL Mult
+	ADD EAX, ECX
+	POP ECX
+	FinP:
+	RET
+Plus ENDP
+
+Mult PROC
+	CALL Op
+	CMP BL, '*'
+	JNE FinM
+	INCHAR BL
+	PUSH ECX
+	MOV ECX, EAX
+	CALL Op
+	PUSH EDX
+	MUL ECX
+	POP EDX
+	POP ECX
+	FinM:
+	RET
+Mult ENDP
+
+Op PROC
+	CMP BL, '('
+	JNE FinO
+	INCHAR BL
+	CALL Plus
+	INCHAR BL
+	RET
+	FinO:
+	SUB BL, '0'
+	MOVSX EAX, BL
+	INCHAR BL
+	RET
+Op ENDP
+
+Start:
+	ClrScr
+	ConsoleTitle "PrOgRaM 228!!!"
+
+	INCHAR BL
+	CALL Plus
+	OUTI EAX
+
+	MsgBox "Конец задачи", "Повторить программу ?", MB_YESNO+MB_ICONQUESTION
+	CMP	EAX, IDYES
+	JE Start
+	exit
+END Start

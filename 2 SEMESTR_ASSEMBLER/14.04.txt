@@ -1,0 +1,38 @@
+include console.inc
+ 
+.data
+    r DF 47
+    m DB -46
+    ABS1 MACRO R, X
+        LOCAL fin
+        MOV R, X
+        CMP R, 0
+        JGE fin
+        NEG R
+        fin:
+    ENDM
+ 
+.code
+Start:
+   ClrScr
+   ConsoleTitle "  аготовка программы" 
+   ABS1 AL, r
+   ABS1 AH, m
+;   N = 1
+;   REPEAT 6
+;       MOV EAX,N
+;       N = N + 1
+ 
+;   FORC r, <"A+B=B+A">
+;       OUTCHAR '&r'
+;   ENDM
+ 
+ 
+ 
+ 
+ 
+   MsgBox "Конец задачи","Повторить программу ?",MB_YESNO+MB_ICONQUESTION
+   cmp  eax,IDYES
+   je   Start
+   exit
+   end Start
